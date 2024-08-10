@@ -1,1 +1,281 @@
-<h1>Hello world</h1>
+<style>
+	img{
+		width: 100vw;
+		height: 50vh;
+		object-fit: cover;
+	}
+	body{
+		margin: 0px;
+	}
+	button{
+		background: #183d24;
+		color: #c0ff00;
+		padding: 10px;
+		border: none;
+	}
+	p{
+		text-align: left;
+	}
+
+	a{
+		text-decoration: none;
+		color: white;
+	}
+	.about_gj{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+
+  .clock_parent {
+margin: 10px;
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .colon {
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .clock_time {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+  }
+  .clock_time_time {
+    display: flex;
+    gap: 2px;
+  }
+
+  .p {
+    margin: 0px;
+    font-size: 1.5rem;
+  }
+
+  #seconds_carry {
+    background-color: #183d24;
+    border-radius: 5px;
+    height: 60px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  #seconds_not_carry {
+    height: 60px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #minutes_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #minutes_not_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #hours_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #hours_not_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #days_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+  #days_not_carry {
+    width: 40px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: #183d24;
+    border-radius: 5px;
+    color: white;
+  }
+</style>
+<script>
+function sleep(ms) {
+    // for sleep function
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const calculate_timer = async () => {
+    var nowTime = new Date().getTime(); // getting now time
+    var eventTime = new Date("08-11-2024".replace(/-/g, "/")).getTime(); // getting event time
+
+    while (nowTime != eventTime) {
+      nowTime = new Date().getTime(); // getting now time
+      eventTime = new Date("08-11-2024".replace(/-/g, "/")).getTime(); // getting event time
+
+      let timeLeft = (eventTime - nowTime) * 0.001; // converting to ms -> s
+
+      let daysLeft = Math.floor(timeLeft / 86400); // converting to days
+
+      timeLeft = timeLeft - daysLeft * 86400;
+
+      let hoursLeft = Math.floor(timeLeft / 3600); //converting to hours
+
+      timeLeft = timeLeft - hoursLeft * 3600;
+
+      let minutesLeft = Math.floor(timeLeft / 60); // converting to minutes
+
+      timeLeft = timeLeft - minutesLeft * 60;
+
+      let secondsLeft = Math.floor(timeLeft); // seconds
+
+      document.getElementById("days_not_carry").innerHTML = daysLeft
+        .toString()
+        .slice(-1);
+      document.getElementById("days_carry").innerHTML =
+        daysLeft.toString().slice(-2, -1) == ""
+          ? "0"
+          : daysLeft.toString().slice(-2, -1);
+      document.getElementById("hours_not_carry").innerHTML = hoursLeft
+        .toString()
+        .slice(-1);
+      document.getElementById("hours_carry").innerHTML =
+        hoursLeft.toString().slice(-2, -1) == ""
+          ? "0"
+          : hoursLeft.toString().slice(-2, -1);
+      document.getElementById("minutes_not_carry").innerHTML = minutesLeft
+        .toString()
+        .slice(-1);
+      document.getElementById("minutes_carry").innerHTML =
+        minutesLeft.toString().slice(-2, -1) == ""
+          ? "0"
+          : minutesLeft.toString().slice(-2, -1);
+
+      document.getElementById("seconds_not_carry").innerHTML = secondsLeft
+        .toString()
+        .slice(-1);
+      document.getElementById("seconds_carry").innerHTML =
+        secondsLeft.toString().slice(-2, -1) == ""
+          ? "0"
+          : secondsLeft.toString().slice(-2, -1);
+
+      await sleep(1000); // sleeping for a second
+    }
+    document.getElementById("clock_parent").style.display = "none"; // makes timer dissapear when time is met
+  };
+
+  window.onload = () => {
+    calculate_timer();
+  };
+
+</script>
+<body>
+	<img src="{{url_for('static', filename='gj.png')}}">
+	<center><div class="about_gj"><p>
+	The RBS Game Jam is an internal game development competition organized by the Robotics and Programming Club of Rato Bangala School.</br> This two-week event provides participants with an opportunity to </br>
+	showcase their skills and creativity, either individually or as part of a team.</br>
+			</p></div>
+</center>
+<center><h1>Registration Ends in:</h1><center>
+<div class="clock_parent" id="clock_parent">
+  <div class="clock_time">
+    <div class="clock_time_time">
+      <p class="p" id="days_carry"></p>
+      <p class="p" id="days_not_carry"></p>
+    </div>
+    <p class="p">Days</p>
+  </div>
+  <div class="colon">
+    <p class="p">:</p>
+  </div>
+  <div class="clock_time">
+    <div class="clock_time_time">
+      <p class="p" id="hours_carry"></p>
+      <p class="p" id="hours_not_carry"></p>
+    </div>
+    <p class="p">Hours</p>
+  </div>
+  <div class="colon">
+    <p class="p">:</p>
+  </div>
+  <div class="clock_time">
+    <div class="clock_time_time">
+      <p class="p" id="minutes_carry"></p>
+      <p class="p" id="minutes_not_carry"></p>
+    </div>
+    <p class="p">Minutes</p>
+  </div>
+  <div class="colon">
+    <p class="p">:</p>
+  </div>
+  <div class="clock_time">
+    <div class="clock_time_time">
+      <p class="p" id="seconds_carry"></p>
+      <p class="p" id="seconds_not_carry"></p>
+    </div>
+    <p class="p">Seconds</p>
+  </div>
+</div>
+<center><button><a href="https://forms.gle/PxD7nBYabvS5f3Be6">Register here</a></button></center>
+<center><h1>Rules</h1></center>
+<center><div class="about_gj"><p>
+	1. Can use any engine or game possible</br>
+	2. Should be able to run on windows</br>
+	3. Should not have malicious code in your game</br>
+	4. Should relate to the theme provided</br>
+	5. Should include your group members' names in the game as text.</br>
+	6. A team should have only 4 members max.
+	5. You can join in as individual also!
+		</p></div></center>
+
+</body>
