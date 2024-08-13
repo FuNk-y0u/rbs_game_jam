@@ -1,4 +1,25 @@
 <style>
+  .bottom{
+    height: 50px;
+    width: 100vw;
+    background-color: rgb(39, 39, 39);
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    color: white;
+  }
+  .theme{
+    font-weight: bold;
+    font-size: 30px;
+    display: none;
+  }
+  .rules{
+    padding: 10px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
 	img{
 		width: 100vw;
 		height: 50vh;
@@ -10,7 +31,8 @@
 	button{
 		background: #183d24;
 		color: #c0ff00;
-		padding: 10px;
+		padding: 20px;
+    border-radius: 20px;
 		border: none;
 	}
 	p{
@@ -22,11 +44,17 @@
 		color: white;
 	}
 	.about_gj{
+    padding: 20px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
+    width: 100vw;
 
 	}
+
+  .about_gj p{
+    width: 50%;
+  }
 
   .clock_parent {
 margin: 10px;
@@ -157,11 +185,11 @@ function sleep(ms) {
 
   const calculate_timer = async () => {
     var nowTime = new Date().getTime(); // getting now time
-    var eventTime = new Date("08-11-2024".replace(/-/g, "/")).getTime(); // getting event time
+    var eventTime = new Date("08-15-2024".replace(/-/g, "/")).getTime(); // getting event time
 
-    while (nowTime != eventTime) {
+    while (nowTime < eventTime) {
       nowTime = new Date().getTime(); // getting now time
-      eventTime = new Date("08-11-2024".replace(/-/g, "/")).getTime(); // getting event time
+      eventTime = new Date("08-15-2024".replace(/-/g, "/")).getTime(); // getting event time
 
       let timeLeft = (eventTime - nowTime) * 0.001; // converting to ms -> s
 
@@ -212,6 +240,13 @@ function sleep(ms) {
       await sleep(1000); // sleeping for a second
     }
     document.getElementById("clock_parent").style.display = "none"; // makes timer dissapear when time is met
+    document.getElementById("t-1").style.display = "none"; // makes timer dissapear when time is met
+    document.getElementById("theme").style.display = "block"; // Make is slow
+    document.getElementById("theme-txt").innerHTML = "'10-seconds'"; // checking if 10 seconds passed :D
+    document.getElementById("theme-txtss").innerHTML = "'10ad-seconds'"; // asdankfib-sdfjbnifr-sdfnth353njdsf
+    document.getElementById("ssstheme-txtss").innerHTML = "'1ssda0ad-seconds'"; // aseusndf-sadaus-asdausn
+    document.getElementById("game-jam-theme").innerHTML = "Grow."; // setting game jam theme
+    
   };
 
   window.onload = () => {
@@ -221,12 +256,18 @@ function sleep(ms) {
 </script>
 <body>
 	<img src="{{url_for('static', filename='gj.png')}}">
-	<center><div class="about_gj"><p>
-	The RBS Game Jam is an internal game development competition organized by the Robotics and Programming Club of Rato Bangala School.</br> This two-week event provides participants with an opportunity to showcase their skills and creativity, either individually or as part of a team.</br>
-	Contestants should build a game related to the theme provided, and closely integrate it to their games. Games will be judged from different perspectives: gameplay, artstyle, creativity, theme.</br>
-			</p></div>
-</center>
-<center><h1>Registration Ends in:</h1><center>
+
+	<div class="about_gj">
+    <p>The RBS Game Jam is an internal game development competition organized by the Robotics and Programming Club of Rato Bangala School.
+      This two-week event provides participants with an opportunity to showcase their skills and creativity, either individually or as part of a team.
+      Contestants should build a game related to the theme provided, and closely integrate it to their games. Games will be judged from different perspectives:</div>
+<center><h1 id="t-1">Game Jam Theme Reveal In: </h1><center>
+
+  <div class="theme" id="theme">
+    <h1 style="font-size: 30px;">Game Jam Theme: </h1>
+    <p class="theme-txt" style="display: flex; align-items: center; justify-content: center;" id="theme-txt"></p>
+    <p style="font-size: 20px; width: 100%; display:flex; align-items: center; justify-content: center; font-weight: normal;">You can interprete the theme how ever you like it.</p>
+  </div>
 <div class="clock_parent" id="clock_parent">
   <div class="clock_time">
     <div class="clock_time_time">
@@ -266,16 +307,19 @@ function sleep(ms) {
     <p class="p">Seconds</p>
   </div>
 </div>
-<center><button><a href="https://forms.gle/PxD7nBYabvS5f3Be6">Register here</a></button></center>
-<center><h1>Rules</h1></center>
-<center><div class="about_gj"><p>
-	1. Can use any engine or game possible</br>
-	2. Should be able to run on windows</br>
-	3. Should not have malicious code in your game</br>
-	4. Should relate to the theme provided</br>
-	5. Should include your group members' names in the game as text.</br>
-	6. A team should have only 4 members max.</br>
-	7. You can join in as individual also!
-		</p></div></center>
-
+<button><a href="https://forms.gle/PxD7nBYabvS5f3Be6">Register here</a></button>
+<div class="rules">
+  <p>
+    1. You may use any game engine or platform of your choice.</br>
+    2. The game must be compatible with Windows operating systems.</br>
+    3. The game should be free of any malicious code or harmful software.</br>
+    4. The game must adhere to the provided theme.</br>
+    5. The names of all group members must be included within the game as text.</br>
+    6. Each team may consist of a maximum of four members.</br>
+    7. Participation as an individual is also permitted.</br>
+  </p>
+</div>
+<div class="bottom">
+  RBS Robotics And Programming Club 2024
+</div>
 </body>
