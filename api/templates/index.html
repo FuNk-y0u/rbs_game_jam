@@ -191,11 +191,11 @@
 
         const calculate_timer = async () => {
             var nowTime = new Date().getTime(); // getting now time
-            var eventTime = new Date("09-01-2024".replace(/-/g, "/")).getTime(); // getting event time
+            var eventTime = new Date("09-09-2024".replace(/-/g, "/")).getTime(); // getting event time
 
             while (nowTime < eventTime) {
             nowTime = new Date().getTime(); // getting now time
-            eventTime = new Date("09-01-2024".replace(/-/g, "/")).getTime(); // getting event time
+            eventTime = new Date("09-09-2024".replace(/-/g, "/")).getTime(); // getting event time
 
             let timeLeft = (eventTime - nowTime) * 0.001; // converting to ms -> s
 
