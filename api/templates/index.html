@@ -245,6 +245,10 @@
 
             await sleep(1000); // sleeping for a second
             }
+            document.getElementById("clock_parent").style.display = "none";
+            document.getElementById("sub_open").style.display = "none";
+            document.getElementById("submit_button").style.display = "none";
+            document.getElementById("compl_div").style.display = "block";
         };
 
         window.onload = () => {
@@ -262,7 +266,8 @@
         <center><h1>"10-seconds"</h1></center>
     </div>
     <div class="about-us">
-        <h1>Submissions Open Till</h1>
+        <h1 id="sub_open">Submissions Open Till</h1>
+        <h1 id="compl_div" style="display: none;">RBS GAME JAM HAS FINISHED! Thankyou everyone for their Participation. Futher info will be provided in the viber group</h1>
         <div class="clock_parent" id="clock_parent">
             <div class="clock_time">
               <div class="clock_time_time">
@@ -302,7 +307,7 @@
               <p class="p">Seconds</p>
             </div>
           </div>
-          <button><a href="https://forms.gle/tkdabpwMnxNM51hq8">Submit your game</a></button>
+          <button id="submit_button"><a href="https://forms.gle/tkdabpwMnxNM51hq8">Submit your game</a></button>
     </div>
     <div class="about-us">
         <h1>About Game Jam</h1>
